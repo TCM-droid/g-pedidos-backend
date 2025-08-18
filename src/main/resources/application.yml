@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: GPedidos
+  datasource:
+    url: jdbc:mysql://localhost:3306/gpedidos
+    username: root
+    password: gpedidospass
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update # Controls schema generation
+    show-sql: true # Logs SQL statements to the console
+    properties:
+      hibernate:
+        format_sql: true # Formats the logged SQL for better readability

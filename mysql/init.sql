@@ -1,0 +1,6 @@
+CREATE USER 'root'@'%' IDENTIFIED BY 'admin';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+
+ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'gpedidospass';
+FLUSH PRIVILEGES;
