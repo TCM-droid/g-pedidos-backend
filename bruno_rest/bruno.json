@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "GPedidos",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

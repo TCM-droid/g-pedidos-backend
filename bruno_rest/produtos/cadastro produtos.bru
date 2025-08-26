@@ -1,0 +1,25 @@
+meta {
+  name: cadastro produtos
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:8080/api/produtos/cadastrar
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "sku":"123456",
+    "nome":"Teste",
+    "descricao":"qweq",
+    "moeda":"BRL",
+    "preco":"99.99"
+  }
+}
+
+settings {
+  encodeUrl: true
+}
