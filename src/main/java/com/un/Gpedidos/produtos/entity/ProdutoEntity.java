@@ -32,6 +32,9 @@ public class ProdutoEntity {
 	@Column(name = "MOEDA", nullable = false, length = 31)
 	private String moeda;
 
+	@Column(name = "SFT_DELETED", nullable = false)
+	private Boolean deleted;
+
 	public Long getId() {
 		return id;
 	}
@@ -78,6 +81,14 @@ public class ProdutoEntity {
 
 	public void setMoeda(String moeda) {
 		this.moeda = moeda;
+	}
+
+	public Boolean getDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(Boolean deleted) {
+		this.deleted = deleted;
 	}
 	
 }
