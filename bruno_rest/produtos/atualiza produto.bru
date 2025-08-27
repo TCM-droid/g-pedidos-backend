@@ -1,0 +1,26 @@
+meta {
+  name: atualiza produto
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:8080/api/produtos/
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "id": 1,
+    "sku": "fa381982",
+    "nome": "Ipod",
+    "descricao": "Ipod shuffle",
+    "preco": 99.99,
+    "moeda": "BRL"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

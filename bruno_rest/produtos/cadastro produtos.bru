@@ -5,18 +5,17 @@ meta {
 }
 
 post {
-  url: http://localhost:8080/api/produtos/cadastrar
+  url: http://localhost:8080/api/produtos/
   body: json
   auth: inherit
 }
 
 body:json {
   {
-    "sku":"123456",
-    "nome":"Teste",
-    "descricao":"qweq",
+    "nome":"Ipod Touch",
+    "descricao":"ipod Touch",
     "moeda":"BRL",
-    "preco":"99.99"
+    "preco":"299.99"
   }
 }
 
