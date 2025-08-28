@@ -3,6 +3,7 @@ package com.un.Gpedidos.pedidos.services;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,6 @@ import com.un.Gpedidos.pedidos.entity.ProdutoPedidoEntity;
 import com.un.Gpedidos.pedidos.mappers.PedidoMapper;
 import com.un.Gpedidos.pedidos.mappers.ProdutoPedidoMapper;
 import com.un.Gpedidos.pedidos.repository.PedidosRepository;
-import com.un.Gpedidos.pedidos.repository.ProdutosPedidosRepository;
 import com.un.Gpedidos.produtos.entity.ProdutoEntity;
 import com.un.Gpedidos.produtos.services.ProdutosService;
 
@@ -23,14 +23,14 @@ import com.un.Gpedidos.produtos.services.ProdutosService;
 public class PedidosService {
 
 	PedidosRepository pedidosRepository;
-	ProdutosPedidosRepository produtosPedidosRepository;
+	ProdutosPedidosService produtosPedidosService;
 	PedidoMapper pedidoMapper;
 	ProdutoPedidoMapper produtoPedidoMapper;
 	ProdutosService produtosService;
 	
-	public PedidosService(PedidosRepository pedidosRepository, ProdutosPedidosRepository produtosPedidosRepository, PedidoMapper pedidoMapper, ProdutoPedidoMapper produtoPedidoMapper, ProdutosService produtosService) {
+	public PedidosService(PedidosRepository pedidosRepository, ProdutosPedidosService produtosPedidosService, PedidoMapper pedidoMapper, ProdutoPedidoMapper produtoPedidoMapper, ProdutosService produtosService) {
 		this.pedidosRepository = pedidosRepository;
-		this.produtosPedidosRepository = produtosPedidosRepository;
+		this.produtosPedidosService = produtosPedidosService;
 		this.pedidoMapper = pedidoMapper;
 		this.produtoPedidoMapper = produtoPedidoMapper;
 		this.produtosService = produtosService;
@@ -102,7 +102,21 @@ public class PedidosService {
 		
 		novosProdutosPedidos.forEach(npp -> npp.setPedido(novoPedido));
 
-		produtosPedidosRepository.saveAll(novosProdutosPedidos);
+		produtosPedidosService.saveAll(novosProdutosPedidos);
 		
+	}
+
+	public List<PedidoDto> findAllPedidos() {
+		List<PedidoDto> retorno = new ArrayList<>();
+		List<PedidoEntity> pedidos = pedidosRepository.findAll();
+		
+		pedidos.forEach(pedido ->{
+			PedidoDto pedidoDto = pedidoMapper.entityToDto(pedido);
+			List<ProdutoPedidoEntity> produtosPedidos = produtosPedidosService.findAllByPedido(pedido);
+			pedidoDto.setProdutos(produtosPedidos.stream().map(produtoPedidoMapper::entityToDto).collect(Collectors.toList()));
+			retorno.add(pedidoDto);
+		});
+		
+		return retorno;
 	}
 }

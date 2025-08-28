@@ -1,0 +1,15 @@
+meta {
+  name: get all pedidos
+  type: http
+  seq: 2
+}
+
+get {
+  url: http://localhost:8080/api/pedidos/
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}
