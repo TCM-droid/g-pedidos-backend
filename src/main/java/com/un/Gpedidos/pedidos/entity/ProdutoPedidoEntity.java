@@ -12,7 +12,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -29,7 +28,7 @@ public class ProdutoPedidoEntity {
 	@Column(name = "QTD")
 	private Integer quantidade;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "PRODUTO_ID", referencedColumnName = "id")
 	ProdutoEntity produto;
 	

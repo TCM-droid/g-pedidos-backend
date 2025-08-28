@@ -1,0 +1,48 @@
+meta {
+  name: cadastro pedido
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8080/api/pedidos/cadastrar
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "dataPedido":"2025-08-27",
+    "nomeConsumidor":" Teste1",
+    "produtos":[
+      {
+        "moeda": "BRL",
+        "quantidade": 2,
+        "produto":{
+          "id": 1,
+          "sku": "fa381982",
+          "nome": "Ipod",
+          "descricao": "Ipod shuffle",
+          "preco": 99.99,
+          "moeda": "BRL"
+        }
+      },
+      {
+        "moeda": "BRL",
+        "quantidade": 1,
+        "produto":{
+          "id": 3,
+          "sku": "81f40fa2",
+          "nome": "Ipod Touch",
+          "descricao": "ipod Touch",
+          "preco": 299.99,
+          "moeda": "BRL"
+        }
+      }
+    ]
+  }
+}
+
+settings {
+  encodeUrl: true
+}

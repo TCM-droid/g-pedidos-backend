@@ -1,6 +1,5 @@
 package com.un.Gpedidos.produtos.services;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -58,13 +57,18 @@ public class ProdutosService {
 		return mapper.entityToDto(produto); 
 	}
 
-	private ProdutoEntity buscaProdutoEntity(Long idProduto) {
+	public ProdutoEntity buscaProdutoEntity(Long idProduto) {
 		Optional<ProdutoEntity> produtoOpt = produtoRepository.findById(idProduto);
 		
 		ProdutoEntity produto = produtoOpt.orElseThrow( () -> new GpedidosNotFoundException("Produto não encontrado"));
 		return produto;
 	}
 
+	
+	public List<ProdutoEntity> findAllComIds(List<Long> ids){
+		return produtoRepository.findAllById(ids);
+	}
+	
 	public Boolean softDeleteProduto(Long idProduto) {
 		
 		ProdutoEntity produto = buscaProdutoEntity(idProduto);
