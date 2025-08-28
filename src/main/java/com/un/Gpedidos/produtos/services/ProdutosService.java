@@ -35,6 +35,7 @@ public class ProdutosService {
 		
 		if(Strings.isEmpty(entity.getSku())) {
 			entity.setSku(UUID.randomUUID().toString().split("-")[0]);
+			entity.setDeleted(false);
 		}
 		
 		produtoRepository.save(entity);
